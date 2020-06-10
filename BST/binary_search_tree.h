@@ -23,15 +23,14 @@ public:
 	int size () const {return _size;}
 
 
-
-	bool operator== (AVL_tree& a);
-	bool operator!= (AVL_tree& a) {return !(a == this);}
+	bool operator== (const AVL_tree& a) const;
+	bool operator!= (const AVL_tree& a) const {return !(&a == this);}
 
 	template<typename Func>
 	void traversal (traversal_type t, Func f) {_traversal(root, nullptr, t, f);}
 
 	template<typename Func>
-	void const_traversal (traversal_type t, Func f) const {_traversal(root, nullptr, t, f);}
+	void const_traversal (traversal_type t, Func f) const {_const_traversal(root, nullptr, t, f);}
 
 	~AVL_tree();
 
@@ -63,6 +62,9 @@ private:
 
 	template<typename Func>
 	void _traversal(node* p, node* parent, traversal_type t, Func f);
+
+	template<typename Func>
+	void _const_traversal(node* p, node* parent, traversal_type t, Func f) const;
 
 private:
 	node* root;
@@ -107,11 +109,11 @@ AVL_tree<K, V>::~AVL_tree()
 }
 
 template<typename K, typename V>
-bool AVL_tree<K, V>::operator==(AVL_tree<K, V> &a)
+bool AVL_tree<K, V>::operator==(const AVL_tree<K, V> &a) const
 {
 	int t = 0;
 	if (_size == a.size) {
-		a.traversal(a.LRtR, [&a, this, &t] (K& key, V& val) {
+		a.const_traversal(a.LRtR, [&a, this, &t] (K& key, V& val) {
 			if (this->get(key) != val)
 				t++;
 		});
@@ -302,6 +304,29 @@ void AVL_tree<K, V>::_traversal(node *p, node *parent, traversal_type t, Func f)
 }
 
 
+template<typename K, typename V>
+template<typename Func>
+void AVL_tree<K, V>::_const_traversal(node *p, node *parent, traversal_type t, Func f) const
+{
+	if (p == nullptr)
+		return;
+
+	if (p == parent)
+		f(p->key, p->val);
+	else {
+		void *n1 = p->left,
+			 *n2 = p,
+			 *n3 = p->right;
+		t(n1, n2, n3);
+
+		_const_traversal((node*)n1, p, t, f);
+		_const_traversal((node*)n2, p, t, f);
+		_const_traversal((node*)n3, p, t, f);
+	}
+}
+
+
+
 template<typename K, typename V, typename Func>
 AVL_tree<K, V>& map(AVL_tree<K, V>& tree, Func f)
 {
@@ -341,3 +366,4 @@ V reduce(AVL_tree<K, V>& tree, V& start_val, Func f/*, typename AVL_Tree<K,V>::t
 }
 
 #endif // BINARY_SEARCH_TREE_H
+

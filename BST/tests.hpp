@@ -21,7 +21,7 @@ ostream& operator<< (ostream & out, AVL_tree<K, V>& tree)
 template<typename K, typename V>
 ostream& operator<< (ostream & out, const AVL_tree<K, V>& tree)
 {
-	tree.traversal(tree.LRtR, [&out] (K& key, V& val) {
+	tree.const_traversal(tree.LRtR, [&out] (K& key, V& val) {
 		out << val << " ";
 	});
 	return out;
@@ -30,7 +30,7 @@ ostream& operator<< (ostream & out, const AVL_tree<K, V>& tree)
 
 
 template<class T, class U>
-void AssertEqual( T t, U u, const string& hint)
+void AssertEqual(const T& t, const U& u, const string& hint)
 {
   if (t != u) {
 	ostringstream os;
@@ -85,7 +85,7 @@ void tests_base_part_AVL_tree ()
 	for (int i = 3; i < 6; i++)
 		nov.insert(i, i);
 
-	//AssertEqual(tree, nov, "erase, operator== and operator!=");
+	AssertEqual(tree, nov, "erase, operator== and operator!=");
 }
 
 
@@ -123,7 +123,7 @@ void tests_map_where_reduce ()
 	wher.insert(2, 10);
 	wher.insert(4, 20);
 
-	//AssertEqual(tr, wher, "where, operator== and operator!=");
+	AssertEqual(tr, wher, "where, operator== and operator!=");
 }
 
 
