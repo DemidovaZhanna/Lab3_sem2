@@ -340,11 +340,11 @@ AVL_tree<K, V> map(const AVL_tree<K, V>& tree, Func f)
 
 
 template<typename K, typename V, typename Func>
-AVL_tree<K, V> where(AVL_tree<K, V>& tree, Func f)
+AVL_tree<K, V> where(const AVL_tree<K, V>& tree, Func f)
 {
 	AVL_tree<K, V> nov;
 
-	tree.traversal(tree.LRtR, [&f, &nov](const K& key, const V& val) {
+	tree.const_traversal(tree.LRtR, [&f, &nov](const K& key, const V& val) {
 		if (f(val))
 			nov.insert(key, val);
 	});
@@ -354,11 +354,11 @@ AVL_tree<K, V> where(AVL_tree<K, V>& tree, Func f)
 
 
 template<typename K, typename V, typename Func>
-V reduce(AVL_tree<K, V>& tree, const V& start_val, Func f/*, typename AVL_Tree<K,V>::traversal_type t_type = AVL_Tree<K,V>::LRtR*/)
+V reduce(const AVL_tree<K, V>& tree, const V& start_val, Func f/*, typename AVL_Tree<K,V>::traversal_type t_type = AVL_Tree<K,V>::LRtR*/)
 {
 	V res = start_val;
 
-	tree.traversal(tree.RRtL, [&f, &res] (const K& key, const V& val) {
+	tree.const_traversal(tree.RRtL, [&f, &res] (const K& key, const V& val) {
 		res = f(val, res);
 	});
 
