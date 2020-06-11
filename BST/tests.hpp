@@ -104,20 +104,20 @@ void tests_map_where_reduce ()
 	for (int i = 1; i < 6; i++)
 		tree.insert(i, i);
 
-	map(tree, func);
-	AssertEqual(tree.get(4), 20, "get & map");
+	AVL_tree<int, int> r = map(tree, func);
+	AssertEqual(r.get(4), 20, "map");
 
 	AVL_tree<int, int> nov;
 	for (int i = 1; i < 6; i++)
 		nov.insert(i, 5*i);
 
-	AssertEqual (tree, nov, "map, operator== and operator!=");
+	AssertEqual (r, nov, "map, operator== and operator!=");
 
 	int start_val = 0;
-	int res = reduce(tree, start_val, std::plus<>());
+	int res = reduce(r, start_val, std::plus<>());
 	AssertEqual(res, 75, "reduce");
 
-	AVL_tree<int, int> tr = where(tree, func_where);
+	AVL_tree<int, int> tr = where(r, func_where);
 
 	AVL_tree<int, int> wher;
 	wher.insert(2, 10);
