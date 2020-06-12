@@ -19,7 +19,7 @@ class MainWindow : public QMainWindow
 public:
 	MainWindow(QWidget *parent = nullptr);
 	~MainWindow();
-	QScatterSeries* ser(long long *time_y, long long *count_x);
+	QLineSeries *ser(long long *time_y, long long *count_x);
 
 private:
 	Ui::MainWindow *ui;

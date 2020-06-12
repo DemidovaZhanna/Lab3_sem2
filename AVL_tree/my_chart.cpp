@@ -1,7 +1,7 @@
 #include "my_chart.h"
 
 
-MyChart::MyChart(int start_x, int end_x, int start_y, int end_y)
+MyChart::MyChart(double start_x, double end_x, double start_y, double end_y)
 {
 	axisX = new QValueAxis;
 	axisY = new QValueAxis;

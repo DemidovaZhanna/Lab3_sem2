@@ -6,7 +6,7 @@
 class MyChart : public QChart {
 	Q_OBJECT
 public:
-	MyChart(int start_x, int end_x, int start_y, int end_y);
+	MyChart(double start_x, double end_x, double start_y, double end_y);
 	void addSeries(QAbstractSeries *a);
 
 private:
