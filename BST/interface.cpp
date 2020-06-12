@@ -18,7 +18,7 @@ ostream& operator<< (ostream & out, const AVL_tree<K, V>& tree)
 
 void interface_AVL_tree ()
 {
-	cout << "Choose a type of queue: Integer" << endl;
+	cout << "A type of tree: Integer" << endl;
 
 	int data;
 	cout << "Write down size of AVL tree: ";
