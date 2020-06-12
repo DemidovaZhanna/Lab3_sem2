@@ -97,13 +97,13 @@ void interface_AVL_tree ()
 			double x;
 			cin >> x;
 
-				if (oper == 1)
-					nov = map(tree, [x](int val) {return val * x;});
-				if (oper == 2)
-					nov = map(tree, [x](int val) {return pow(val, x);});
-				if (oper == 3)
-					nov = map(tree, [x](int val) {return val + x;});
-				cout << nov << endl;
+			if (oper == 1)
+				nov = map(tree, [x](int val) {return val * x;});
+			if (oper == 2)
+				nov = map(tree, [x](int val) {return pow(val, x);});
+			if (oper == 3)
+				nov = map(tree, [x](int val) {return val + x;});
+			cout << nov << endl;
 		}
 
 		if (input == 6) {
