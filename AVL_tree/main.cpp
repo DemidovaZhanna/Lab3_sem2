@@ -1,9 +1,6 @@
 #include <iostream>
 #include <QApplication>
 
-#include "tests.hpp"
-#include "interface.h"
-#include "measuring_time.hpp"
 #include "mainwindow.h"
 
 using namespace std;
