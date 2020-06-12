@@ -23,6 +23,7 @@ public:
 
 	int size() const {return _size;}
 
+	AVL_tree& operator= (const AVL_tree& tree);
 
 	bool operator== (const AVL_tree& a) const;
 	bool operator!= (const AVL_tree& a) const {return !(a == *this);}
@@ -101,6 +102,16 @@ V &AVL_tree<K, V>::get(K key)
 {
 	node* k = find_el(root, key);
 	return k->val;
+}
+
+template<typename K, typename V>
+AVL_tree<K, V> &AVL_tree<K, V>::operator= (const AVL_tree &tree)
+{
+	if (root != nullptr)
+		delete root;
+	root = new node(tree.root);
+
+	return *this;
 }
 
 template<typename K, typename V>
