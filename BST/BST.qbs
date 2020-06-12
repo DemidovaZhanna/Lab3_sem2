@@ -7,6 +7,7 @@ CppApplication {
         "interface.cpp",
         "interface.h",
         "main.cpp",
+        "measuring_time.h",
         "tests.hpp",
     ]
 

@@ -2,6 +2,7 @@
 #define BINARY_SEARCH_TREE_H
 
 #include <iostream>
+#include <chrono>
 
 
 template <typename K, typename V>
@@ -354,11 +355,12 @@ AVL_tree<K, V> where(const AVL_tree<K, V>& tree, Func f)
 
 
 template<typename K, typename V, typename Func>
-V reduce(const AVL_tree<K, V>& tree, const V& start_val, Func f/*, typename AVL_Tree<K,V>::traversal_type t_type = AVL_Tree<K,V>::LRtR*/)
+V reduce(const AVL_tree<K, V>& tree, const V& start_val, Func f
+		 /*, typename AVL_Tree<K,V>::traversal_type t_type = AVL_Tree<K,V>::LRtR*/)
 {
 	V res = start_val;
 
-	tree.const_traversal(tree.RRtL, [&f, &res] (const K& key, const V& val) {
+	tree.const_traversal(tree.LRtR, [&f, &res] (const K& key, const V& val) {
 		res = f(val, res);
 	});
 

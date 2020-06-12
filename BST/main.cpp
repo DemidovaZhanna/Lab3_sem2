@@ -2,6 +2,7 @@
 
 #include "tests.hpp"
 #include "interface.h"
+#include "measuring_time.h"
 
 using namespace std;
 
