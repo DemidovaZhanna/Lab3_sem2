@@ -207,7 +207,7 @@ typename AVL_tree<K, V>::node *AVL_tree<K, V>::balance(AVL_tree::node *p)  // б
 	if (balance_factor(p) == -2) {
 		if(balance_factor(p->left) > 0)
 			p->left = rotate_left(p->left);
-		return rotate_left(p);
+		return rotate_right(p);
 	}
 
 	return p;
